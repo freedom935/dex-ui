@@ -6,7 +6,6 @@ import Modal from '../components/Modal'
 const HomePage = () => {
   return (
     <>
-        <NavBar />
         <TradeBox />
     </>
   )
