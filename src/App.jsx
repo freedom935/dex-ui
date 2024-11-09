@@ -1,8 +1,11 @@
-import TradeBox from "./components/TradeBox"
+import { Route, Routes } from "react-router-dom"
+import HomePage from "./pages/HomePage"
 
 const App = () => {
   return (
-    <TradeBox />
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   )
 }
 
