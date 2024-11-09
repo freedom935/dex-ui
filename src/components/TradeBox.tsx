@@ -14,7 +14,7 @@ const TradeBox = () => {
           <div className="relative mt-5">
               <p className="text-black mr-2 cursor-pointer absolute bottom-0 right-0"><CiWallet size={30} color="blue" /></p>
               <p className="text-black ml-2 cursor-pointer absolute bottom-0 left-0">~0.00000 USD</p>
-              <input className="w-full pl-3 rounded-md border-0 text-black py-8 focus:outline-none text-xl" type="number" placeholder="0" />
+              <input className="w-full pl-3 rounded-md border-0 text-black py-8 focus:outline-none text-xl [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" type="number" placeholder="0" />
           </div>
           <div className="relative mt-3">
             <input disabled className="w-full pl-3 rounded-md border-0 text-black py-8 bg-white text-xl" value={'0.000'} type="number" placeholder="0" />
