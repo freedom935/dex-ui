@@ -1,14 +1,22 @@
-import { Route, Routes } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import TermsPage from "./pages/TermsPage"
 
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />
+  },
+  {
+    path: "/terms",
+    element: <TermsPage />
+  }
+])
+
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/terms" element={<TermsPage />} />
-    </Routes>
+    <RouterProvider router={router} />
   )
 }
 
