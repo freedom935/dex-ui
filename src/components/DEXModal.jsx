@@ -5,7 +5,7 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 
 export function DEXModal() {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [email, setEmail] = useState('');
 
   function onCloseModal() {

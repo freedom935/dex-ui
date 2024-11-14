@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { DEXModal } from './DEXModal';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const NavBar = () => {
     
@@ -13,7 +14,7 @@ const NavBar = () => {
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Dex</span>
                 </NavLink>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <DEXModal />
+                    <ConnectButton chainStatus="none" />
                     {/* <button viewBox="0 0 24 24" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Connect Wallet</button> */}
                     <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
