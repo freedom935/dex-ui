@@ -10,7 +10,7 @@ const shortenAddress = (address: string, chars = 9) => {
 
 
 const TradeBox = () => {
-  const { isConnected, address } = useAccount();
+  const { isConnected, address, chain } = useAccount();
   const { data } = useBalance({address: address},)
   return (
     <>
@@ -18,7 +18,7 @@ const TradeBox = () => {
         {/* tradeBox */}
         <div className="w-[500px] h-[450px] m-3 rounded-[10px] p-4 bg-slate-500 shadow-md">
           <div className="text-white font-bold"><h6>Easily Swap Tokens</h6>
-            <div>{isConnected ? shortenAddress(address) : 'Wallet is not connected'}</div>
+            <div>{(isConnected) && (chain) ? shortenAddress(address) : 'Wallet is not connected'}</div>
           </div>
           {/* input fields */}
           <div className="relative mt-5">
