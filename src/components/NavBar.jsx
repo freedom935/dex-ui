@@ -4,9 +4,9 @@ import { DEXModal } from './DEXModal';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const NavBar = () => {
-    
+
     const linkClass = ({ isActive }) => isActive ? 'block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500' : 'text-black';
-    
+
     return (
         <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -14,7 +14,98 @@ const NavBar = () => {
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Dex</span>
                 </NavLink>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <ConnectButton chainStatus="none" />
+                    {/* <ConnectButton chainStatus="none" /> */}
+                    <ConnectButton.Custom>
+                        {({
+                            account,
+                            chain,
+                            openAccountModal,
+                            openChainModal,
+                            openConnectModal,
+                            authenticationStatus,
+                            mounted,
+                        }) => {
+                            // Note: If your app doesn't use authentication, you
+                            // can remove all 'authenticationStatus' checks
+                            const ready = mounted && authenticationStatus !== 'loading';
+                            const connected =
+                                ready &&
+                                account &&
+                                chain &&
+                                (!authenticationStatus ||
+                                    authenticationStatus === 'authenticated');
+
+                            return (
+                                <div
+                                    {...(!ready && {
+                                        'aria-hidden': true,
+                                        'style': {
+                                            opacity: 0,
+                                            pointerEvents: 'none',
+                                            userSelect: 'none',
+                                        },
+                                    })}
+                                >
+                                    {(() => {
+                                        if (!connected) {
+                                            return (
+                                                <button onClick={openConnectModal} type="button">
+                                                    Connect Wallet
+                                                </button>
+                                            );
+                                        }
+
+                                        if (chain.unsupported) {
+                                            return (
+                                                <button onClick={openChainModal} type="button">
+                                                    Wrong network
+                                                </button>
+                                            );
+                                        }
+
+                                        return (
+                                            <div style={{ display: 'flex', gap: 12 }}>
+                                                <button
+                                                    onClick={openChainModal}
+                                                    style={{ display: 'flex', alignItems: 'center' }}
+                                                    type="button"
+                                                >
+                                                    {chain.hasIcon && (
+                                                        <div
+                                                            style={{
+                                                                background: chain.iconBackground,
+                                                                width: 12,
+                                                                height: 12,
+                                                                borderRadius: 999,
+                                                                overflow: 'hidden',
+                                                                marginRight: 4,
+                                                            }}
+                                                        >
+                                                            {chain.iconUrl && (
+                                                                <img
+                                                                    alt={chain.name ?? 'Chain icon'}
+                                                                    src={chain.iconUrl}
+                                                                    style={{ width: 12, height: 12 }}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                    {chain.name}
+                                                </button>
+
+                                                <button onClick={openAccountModal} type="button">
+                                                    {account.displayName}
+                                                    {account.displayBalance
+                                                        ? ` (${account.displayBalance})`
+                                                        : ''}
+                                                </button>
+                                            </div>
+                                        );
+                                    })()}
+                                </div>
+                            );
+                        }}
+                    </ConnectButton.Custom>
                     {/* <button viewBox="0 0 24 24" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Connect Wallet</button> */}
                     <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
