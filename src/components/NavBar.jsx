@@ -29,7 +29,6 @@ const NavBar = () => {
                             // can remove all 'authenticationStatus' checks
                             const ready = mounted && authenticationStatus !== 'loading';
                             const connected =
-                                ready &&
                                 account &&
                                 chain &&
                                 (!authenticationStatus ||
@@ -49,7 +48,7 @@ const NavBar = () => {
                                     {(() => {
                                         if (!connected) {
                                             return (
-                                                <button onClick={openConnectModal} type="button">
+                                                <button className='bg-slate-500 p-5 rounded-md text-white font-bold' onClick={openConnectModal} type="button">
                                                     Connect Wallet
                                                 </button>
                                             );
@@ -57,8 +56,8 @@ const NavBar = () => {
 
                                         if (chain.unsupported) {
                                             return (
-                                                <button onClick={openChainModal} type="button">
-                                                    Wrong network
+                                                <button className='bg-red-600 p-5 rounded-md text-white font-bold' onClick={openChainModal} type="button">
+                                                    Wrong Network
                                                 </button>
                                             );
                                         }
